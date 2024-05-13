@@ -4,8 +4,8 @@ public class SalaDeEspera {
     public static void main(String[] args) {
 
         int N = 3;
-        int[] arrayE = { 1, 5, 7 };
-        int[] arrayS = { 9, 13, 12 };
+        int[] arrayE = { 1, 9, 14 };
+        int[] arrayS = { 9, 13, 15 };
 
         int passageirosSimultaneos = contagemDePassageiros(N, arrayE, arrayS);
 
