@@ -1,47 +1,48 @@
-import java.util.Arrays;
 import java.util.Scanner;
 
-public class SalaDeEspera {
+public class WaitingRoom {
 
     public static void main(String[] args) {
 
-        Scanner entrada = new Scanner(System.in);
+        Scanner input = new Scanner(System.in);
 
-        int N;
+        int quantityOfPassengers;
         
         do {
             System.out.print("Qual é a quantidade de passageiros que passaram pela sala de espera? - ");
-            N = entrada.nextInt();
-        } while (N <= 0);
+            quantityOfPassengers = input.nextInt();
+        } while (quantityOfPassengers <= 0);
 
-        int[] arrayE = new int[N];
-        int[] arrayS = new int[N];
+        int[] momentsOfEntry = new int[quantityOfPassengers];
+        int[] momentsOfExit = new int[quantityOfPassengers];
 
-        for (int i = 0; i < N; i++) {
-            
+        for (int i = 0; i < quantityOfPassengers; i++) {
+
             System.out.printf("Qual é o momento de entrada do %sº passageiro? - ", i + 1);
-            arrayE[i] = entrada.nextInt();
+            momentsOfEntry[i] = input.nextInt();
 
             System.out.print("E qual foi seu momento de saida? - ");
-            arrayS[i] = entrada.nextInt();
+            momentsOfExit[i] = input.nextInt();
 
-            while (arrayE[i] >= arrayS[i]) {
-                
+            while (momentsOfEntry[i] >= momentsOfExit[i]) {
+
                 System.out.println("O momento de entrada do passairo, deve ser menor que o momento de saida do mesmo.");
 
                 System.out.printf("Qual é o momento de entrada do %sº passageiro? - ", i + 1);
-                arrayE[i] = entrada.nextInt();
+                momentsOfEntry[i] = input.nextInt();
 
                 System.out.print("E qual foi seu momento de saida? - ");
-                arrayS[i] = entrada.nextInt();
+                momentsOfExit[i] = input.nextInt();
 
             }
-        }
 
-        int passageirosSimultaneos = ContagemDePassageiros.contagemDePassageiros(N, arrayE, arrayS);
+        }
+        
+        input.close();
+
+        int passageirosSimultaneos = PassengerCount.passengerCount(quantityOfPassengers, momentsOfEntry, momentsOfExit);
 
         System.out.println("A quantidade de passageiros simultâneos na sala de espera foi de: " + passageirosSimultaneos);
     }
-    
-    
+
 }
